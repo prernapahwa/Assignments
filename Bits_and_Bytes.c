@@ -58,7 +58,7 @@ legal ops : ! ~ & ^ | + << >>
 Max ops : 6
 */
 int getByte(int x, int n) {
-    return 0;
+    return ((x >> (n * 8)) & (255));
 }
 
 
@@ -68,7 +68,7 @@ legal ops : ~ & ^ | + << >>
 Max ops : 20 
 */
 int logicalShift(int x, int n) {
-	return 0;
+	return (x >> n) & (~(((1 << 31) >> n) << 1));
 }
 
 
@@ -79,7 +79,7 @@ logical ops : ! ~ & ^ | + << >>
 Max ops : 16
 */
 int conditional(int x, int y, int z) {
-	return 0;
+	return ((y ^ z) & ((!x) + ~0)) ^ z;
 }
 
 /*
@@ -88,7 +88,7 @@ Legal ops: ~  & ^ | + << >>
 Max ops: 12
 */
 int bang(int x) {
-    return 0;
+    return (((~x + 1) | x) >> 31) + 1;
 }
 
 /* 
@@ -100,7 +100,7 @@ as zero
 */
 int invert (int x, int p, int n) {
 	
-    return 0;
+    return x ^ (((1 << n) - 1) << p);
 }
 
 
@@ -108,16 +108,16 @@ int invert (int x, int p, int n) {
 
 int main() {
 	
-	//bitAnd
-	printf("Type two numbers to czlculate bitAnd\n");
-	int x, y;
-	scanf("%d%d", &x, &y);
-	printf("bitAnd : %d\n\n",bitAnd(x, y));
-	
+    //bitAnd
+    printf("Type two numbers to czlculate bitAnd\n");
+    int x, y;
+    scanf("%d%d", &x, &y);
+    printf("bitAnd : %d\n\n",bitAnd(x, y));
+
     //bitXor	
-	printf("Type two numbers to calculate bitXor\n");
-	scanf("%d%d", &x, &y);
-	printf("bitXor : %d\n\n",bitXor(x, y));
+    printf("Type two numbers to calculate bitXor\n");
+    scanf("%d%d", &x, &y);
+    printf("bitXor : %d\n\n",bitXor(x, y));
 
     //sign
     printf("Type a number to check the sign\n");
@@ -157,6 +157,8 @@ int main() {
     
     
     //invert
-    
+    printf("type three numbers:\n");
+    scanf("%d%d%d",&x,&y,&z);
+    printf("Invert: %d\n",invert(x,y,z)); 
     
 }
