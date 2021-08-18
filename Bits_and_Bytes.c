@@ -29,11 +29,7 @@ Legal ops:  ~ &
 Max ops: 14
 */
 int bitXor (int x, int y) {
-    
-    int oprn1 = (~(x & y));
-    int oprn2 = (~(~x & ~y));
-    int oprn3 = (~(~x & ~y));
-    return oprn3;
+    return ~(~x & ~y) & ~(x & y);
 }
 
 /*
@@ -58,7 +54,11 @@ legal ops : ! ~ & ^ | + << >>
 Max ops : 6
 */
 int getByte(int x, int n) {
-    return ((x >> (n * 8)) & (255));
+    int ans = ((x >> (n * 8)) & (255));
+    if(ans == 0) {
+        return 0;
+    }
+    return 1;
 }
 
 
@@ -100,7 +100,7 @@ as zero
 */
 int invert (int x, int p, int n) {
 	
-    return x ^ (((1 << n) - 1) << p);
+    return 0;
 }
 
 
@@ -137,12 +137,12 @@ int main() {
     scanf("%d", &x);
     printf("Type a byte number to extract\n");
     scanf("%d", &y);
-    printf("Byte at %d is %d", y, getByte( x, y));
+    printf("Byte at %d is %d\n\n", y, getByte( x, y));
     
     //logicalShift
     printf("Type two numbers\n");
     scanf("%d%d",&x, &y);
-    printf("logicalAnd : %d\n\n", logicalAnd(x, y));
+    printf("logicalShift %d\n\n", logicalShift(x, y));
     
     //conditional
     printf("Type three numbers to calculate conditional \n");
@@ -153,7 +153,7 @@ int main() {
     //bang
     printf("Type a number to calcualte bang(!)");
     scanf("%d",&x);
-    printf("bang of %d is %d", x, bang(x));
+    printf("bang of %d is %d\n\n", x, bang(x));
     
     
     //invert
