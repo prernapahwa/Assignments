@@ -9,15 +9,12 @@
 
 #include<stdio.h>
 
-int partition(int *arr, int start , int end)
-{
+int partition(int *arr, int start , int end) {
     int count = 0;
     int temp = arr[start];
     
-    for(int i = start ; i <= end ; i++)
-    {
-        if(arr[i] < temp)
-        {
+    for(int i = start ; i <= end ; i++) {
+        if(arr[i] < temp) {
             count++;
         }
     }
@@ -30,24 +27,18 @@ int partition(int *arr, int start , int end)
     int p = start;
     int q = end;
     
-    while(p < (count + start) && q > (count + start))
-    {
-        if(arr[p] >= temp && arr[q] < temp)
-        {
+    while(p < (count + start) && q > (count + start)) {
+        if(arr[p] >= temp && arr[q] < temp) {
             extra = arr[p];
             arr[p] = arr[q];
             arr[q] = extra;
             p++;
             q--;
         }
-        
-        else if(arr[p] < temp)
-        {
+        else if(arr[p] < temp) {
             p++;
         }
-        
-        else if(arr[q] >= temp)
-        {
+        else if(arr[q] >= temp) {
             q--;
         }
     }
